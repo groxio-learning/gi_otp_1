@@ -58,12 +58,87 @@ Enum.reduce(1..100, 0, &(&2 + &1))
 defmodule Robot do
   defstruct point: {0, 0}, orientation: :north
 
+  @clockwise ~w{north east south west north}a
+  @counterclockwise Enum.reverse(@clockwise)
+
   def new() do
     %__MODULE__{}
+  end
+
+  # To add 3 new fn -> left, right and forward with argument (acc-> robot)
+  # robot it's like a pointer in C
+
+  def forward(robot) do
+    %{robot | point: Point.move(robot.point, robot.orientation)}
+  end
+
+  def turn(robot, compass) do
+    dir =
+      compass
+      |> Enum.reverse()
+      |> Enum.drop_while(fn d -> d != robot.orientation end)
+      |> Enum.drop(1)
+      |> hd()
+
+    %{robot | orientation: dir}
+  end
+
+  def left(robot) do
+    turn(robot, @counterclockwise)
+  end
+
+  def right(robot) do
+    turn(robot, @clockwise)
+  end
+
+  def move(robot, :left) do
+    left(robot)
+  end
+
+  def move(robot, :right) do
+    right(robot)
+  end
+
+  def move(robot, :forward) do
+    forward(robot)
+  end
+
+  def all(robot, moves) do
+    Enum.reduce(moves, robot, fn move, acc ->
+      move(acc, move)
+    end)
   end
 end
 ```
 
 ```elixir
 Robot.new()
+|> IO.inspect()
+|> Robot.turn(~w(north east south west north)a)
+```
+
+```elixir
+Robot.new()
+|> Robot.forward()
+|> Robot.left()
+|> Robot.forward()
+|> Robot.right()
+```
+
+```elixir
+acc = Robot.new()
+moves = ~w[forward left forward right]a
+Robot.all(acc, moves)
+reducer = fn move, robot -> Robot.move(robot, move) end
+Enum.reduce(moves, acc, reducer)
+```
+
+```elixir
+robot = %Robot{orientation: :north}
+
+~w[north east south west north]a
+# |> Enum.reverse()
+|> Enum.drop_while(fn d -> d != robot.orientation end)
+|> Enum.drop(1)
+|> hd()
 ```
