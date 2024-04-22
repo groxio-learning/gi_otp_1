@@ -1,2 +1,6 @@
-- Nikolay Dimitrov
+- Bruce Tate
+- Cristian Rimbu
+- Enrico Zambelli
+- Ettore Benedetti
+- Stefano Mancini
 - nikidimitrow
