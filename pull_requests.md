@@ -1,2 +1,5 @@
 - Bruce Tate
-- Filip Bozhkov
+- Cristian Rimbu
+- Enrico Zambelli
+- Ettore Benedetti
+- Stefano Mancini
