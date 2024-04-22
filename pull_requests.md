@@ -1,2 +1,3 @@
 - Bruce Tate
 - Ettore Benedetti
+- Stefano Mancini
