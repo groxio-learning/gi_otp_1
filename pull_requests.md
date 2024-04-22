@@ -1,2 +1,4 @@
 - Bruce Tate
 - Enrico Zambelli
+- Ettore Benedetti
+- Stefano Mancini
