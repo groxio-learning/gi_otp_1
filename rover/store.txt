@@ -1,0 +1,1 @@
+[%{point: {0, 3}, orientation: :north}, %{point: {0, 2}, orientation: :north}, %{point: {0, 1}, orientation: :north}, %{point: {0, 0}, orientation: :north}]
