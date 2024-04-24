@@ -3,20 +3,15 @@ defmodule Rover.Point do
     {x, y}
   end
 
-  def move({x, y}, :north) do
-    {x, y + 1}
-  end
+  def new, do: {0, 0}
 
-  def move({x, y}, :south) do
-    {x, y - 1}
-  end
-
-  def move({x, y}, :east) do
-    {x + 1, y}
-  end
-
-  def move({x, y}, :west) do
-    {x - 1, y}
+  def move({x, y}, heading) do
+    case heading do
+      :north -> {x, y - 1}
+      :south -> {x, y + 1}
+      :east -> {x + 1, y}
+      :west -> {x - 1, y}
+    end
   end
 
   def show(acc) do

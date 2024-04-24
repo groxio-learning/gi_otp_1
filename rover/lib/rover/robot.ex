@@ -1,6 +1,6 @@
 defmodule Rover.Robot do
   defstruct point: {0, 0}, orientation: :north, history: []
-
+  alias Rover.Point
   @clockwise ~w{north east south west north}a
   @counterclockwise Enum.reverse(@clockwise)
 
@@ -12,7 +12,7 @@ defmodule Rover.Robot do
   # robot it's like a pointer in C
 
   def save_history(robot) do
-    %{robot | history: [ %{point: robot.point, orientation: robot.orientation } | robot.history]}
+    %{robot | history: [%{point: robot.point, orientation: robot.orientation} | robot.history]}
   end
 
   def show_history(robot) do
@@ -20,13 +20,15 @@ defmodule Rover.Robot do
   end
 
   def export_history(robot) do
-    content = inspect(robot.history)
-    File.write!("store.txt", content)
+    File.write!(
+      "store.txt",
+      inspect(robot.history)
+    )
   end
 
   def forward(robot) do
-    robot = %{robot | point: Rover.Point.move(robot.point, robot.orientation)}
-    save_history(robot)
+    %{robot | point: Point.move(robot.point, robot.orientation)}
+    |> save_history()
   end
 
   def turn(robot, compass) do
@@ -37,8 +39,8 @@ defmodule Rover.Robot do
       |> Enum.drop(1)
       |> hd()
 
-    robot = %{robot | orientation: dir}
-    save_history(robot)
+    %{robot | orientation: dir}
+    |> save_history()
   end
 
   def left(robot) do
