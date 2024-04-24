@@ -1,0 +1,15 @@
+# Otp class
+
+## Point
+
+```elixir
+alias Rover.{Point, Rover}
+```
+
+```elixir
+Point.new()
+|> Point.move(:north)
+|> Point.move(:north)
+|> Point.move(:east)
+|> Bot.show()
+```
