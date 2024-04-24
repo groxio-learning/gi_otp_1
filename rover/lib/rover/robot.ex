@@ -5,14 +5,14 @@ defmodule Rover.Robot do
   @counterclockwise Enum.reverse(@clockwise)
 
   def new() do
-    %__MODULE__{} |> save_history()
+    %__MODULE__{}
   end
 
   # To add 3 new fn -> left, right and forward with argument (acc-> robot)
   # robot it's like a pointer in C
 
   def save_history(robot) do
-    %{robot | history: [%{point: robot.point, orientation: robot.orientation} | robot.history]}
+    %{robot | history: [robot.point | robot.history]}
   end
 
   def show_history(robot) do
@@ -27,8 +27,8 @@ defmodule Rover.Robot do
   end
 
   def forward(robot) do
+    robot = save_history(robot)
     %{robot | point: Point.move(robot.point, robot.orientation)}
-    |> save_history()
   end
 
   def turn(robot, compass) do
@@ -40,7 +40,7 @@ defmodule Rover.Robot do
       |> hd()
 
     %{robot | orientation: dir}
-    |> save_history()
+
   end
 
   def left(robot) do

@@ -3,7 +3,7 @@
 ## Point
 
 ```elixir
-alias Rover.{Point, Rover}
+alias Rover.{Point, Robot}
 ```
 
 ```elixir
@@ -11,5 +11,11 @@ Point.new()
 |> Point.move(:north)
 |> Point.move(:north)
 |> Point.move(:east)
+|> Bot.show()
+```
+
+```elixir
+Robot.new()
+|> Robot.all(~w(forward forward left forward forward right forward)a)
 |> Bot.show()
 ```
