@@ -9,7 +9,7 @@ defmodule Rover.Application do
   def start(_type, _args) do
     children = [
       # Starts a worker by calling: Rover.Worker.start_link(arg)
-      # {Rover.Worker, arg}
+      # {Rover.Worker, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
