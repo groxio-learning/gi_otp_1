@@ -5,12 +5,13 @@ defmodule Rover.Worker do
 
   # client
 
-  def start_link(_input) do
-    GenServer.start_link(__MODULE__, [], name: __MODULE__)
+  def start_link(name) do
+    GenServer.start_link(__MODULE__, name, name: name)
   end
 
   @impl true
-  def init(_elements) do
+  def init(name) do
+    IO.inspect("Starting Rover.Worker, #{name}")
     initial_state = Robot.new()
     {:ok, initial_state}
   end
