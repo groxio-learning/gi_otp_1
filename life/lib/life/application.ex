@@ -9,7 +9,7 @@ defmodule Life.Application do
   def start(_type, _args) do
     children = [
       # Starts a worker by calling: Life.Worker.start_link(arg)
-      # {Life.Worker, arg}
+      {Life.Worker, :game}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
