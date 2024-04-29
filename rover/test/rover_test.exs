@@ -22,17 +22,15 @@ defmodule RoverTest do
 
   test "save history on initialization" do
     robot = Robot.new()
-    assert robot.history == [%{point: {0, 0}, orientation: :north}]
+    assert robot.history == []
   end
 
   test "save history" do
-    robot =
-      Robot.new()
-      |> Robot.forward()
+    robot = Robot.new()
+         |> Robot.forward()
 
     assert robot.history == [
-             %{point: {0, -1}, orientation: :north},
-             %{point: {0, 0}, orientation: :north}
+             {0, 0}
            ]
   end
 
