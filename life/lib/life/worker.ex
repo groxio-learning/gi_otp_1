@@ -25,6 +25,10 @@ defmodule Life.Worker do
 
   @impl true
   def handle_call(:show, _from, board) do
+    if Enum.random(1..100) == 1 do
+      raise("boom")
+    end
+
     string_result = Board.show(board)
     {:reply, string_result, board}
   end
@@ -42,6 +46,10 @@ defmodule Life.Worker do
     {:noreply, new_board}
   end
 
+  def evolve_get(pid) do
+    GenServer.call(pid, :evolve)
+    GenServer.call(pid, :show)
+  end
 
   def evolve(pid \\ :game)  do
     GenServer.call(pid, :evolve)
